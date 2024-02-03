@@ -7,5 +7,8 @@ CHIP Ex2Q2 {
     OUT s[4],Carry;
 
     PARTS:
-    // Put your code here:
+    FullAdder(a=a[0], b=b[0], c=pCarry, sum=s[0], carry=c0);
+    FullAdder(a=a[1], b=b[1], c=c0, sum=s[1], carry=c1);
+    FullAdder(a=a[2], b=b[2], c=c1, sum=s[2], carry=c2);
+    FullAdder(a=a[3], b=b[3], c=c2, sum=s[3], carry=Carry);
 }
