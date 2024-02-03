@@ -12,5 +12,9 @@ CHIP NXor {
     OUT out;
 
     PARTS:
-    // Put your code here:
+    Nand(a=a, b=b, out=not_a_and_b);
+    Nand(a=a, b=not_a_and_b, out=a_and_not_b);
+    Nand(a=b, b=not_a_and_b, out=not_a_and_b);
+    Nand(a=a_and_not_b, b=not_a_and_b, out=a_xor_b);
+    Nand(a=a_xor_b, b=a_xor_b, out=out);
 }

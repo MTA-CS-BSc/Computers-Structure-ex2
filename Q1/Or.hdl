@@ -12,7 +12,7 @@ CHIP Or {
     OUT out;
 
     PARTS:
-    Nand(a=a, b=a, out=nota);
-    Nand(a=b, b=b, out=notb);
-    Nand(a=nota, b=notb, out=out);
+    Nand(a=a, b=a, out=not_a);
+    Nand(a=b, b=b, out=not_b);
+    Nand(a=not_a, b=not_b, out=out);
 }
