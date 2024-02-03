@@ -1,0 +1,11 @@
+/**
+ * Let A be a binary numbers (8 bits) 
+ * Zn = number of zeros in A.
+ * 
+CHIP Ex2Q5 {
+    IN A[8];
+    OUT Zn[3];
+
+    PARTS:
+    // Put your code here:
+}

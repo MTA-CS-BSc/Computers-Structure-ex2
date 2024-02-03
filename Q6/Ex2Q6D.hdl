@@ -1,0 +1,12 @@
+/**
+ *  F(A,B,C,D) = SOP(1,2,3,4,5,8,9,14)
+ */
+
+CHIP Ex2Q6D {
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+    // Put your implementation here using single Mux 4-1
+    // and minimal logic
+}

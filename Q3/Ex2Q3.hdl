@@ -1,0 +1,11 @@
+/**
+ *  s = a + b, and Carry is the final Carry.
+ */
+
+CHIP Ex2Q3 {
+    IN a[10],b[10];
+    OUT s[10],Carry;
+
+    PARTS:
+    // Put your code here:
+}

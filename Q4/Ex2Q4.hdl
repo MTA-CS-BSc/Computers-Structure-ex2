@@ -1,0 +1,18 @@
+/**
+ * Let A and B be two binary numbers (4 digits) in 2's complement
+ * Let S=A-B 
+ * 
+ * The output should be:
+ * eq = 1 if A=B
+ * lt = 1 if A<B (there is no overflow and A-B<0) or (A<0 and B>=0)
+ * gt = 1 if A>B (there is no overflow and A-B>0) or (A>=0 and B<0)
+ *                Alternatively, A>B iff not(A=B or A<B)
+ */
+
+CHIP Ex2Q6 {
+    IN A[4], B[4];
+    OUT eq, gt, lt;
+
+    PARTS:
+    // Put your code here:
+}
