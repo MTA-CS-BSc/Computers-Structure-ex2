@@ -1,5 +1,6 @@
 load Ex2Q5.hdl,
 output-file Ex2Q5.out,
+compare-to Ex2Q5.cmp,
 output-list A%B1.8.1 Zn%B1.4.1;
 
 set A %B00000000,
