@@ -22,6 +22,7 @@ CHIP Ex2Q4 {
     Not(in=A[3], out=notasign);
     Not(in=B[3], out=notbsign);
 
+    // EQ
     Or(a=sum0, b=sum1, out=or01);
     Or(a=sum2, b=sum3, out=or23);
     Or(a=or01, b=or23, out=orall);
