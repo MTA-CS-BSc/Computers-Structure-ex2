@@ -22,8 +22,8 @@ CHIP Ex2Q4 {
     And(a=negaANDposb, b=overflow, out=negaANDposbOverflow);
     Or(a=neg, b=negaANDposbOverflow, out=lt);
     Not(in=neg, out=pos);
-    Not(in=tempeq, out=notEq);
-    And(a=notEq, b=pos, out=noteqANDpos);
+    Not(in=tempeq, out=noteq);
+    And(a=noteq, b=pos, out=noteqANDpos);
     Not(in=A[3], out=notA3);
     And(a=notA3, b=B[3], out=posaANDnegb);
     And(a=posaANDnegb, b=overflow, out=posaANDnegbOverflow);
