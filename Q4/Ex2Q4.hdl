@@ -14,18 +14,25 @@ CHIP Ex2Q4 {
     OUT eq, gt, lt;
 
     PARTS:
-    AddSub(a=A, b=B, sel=true, out=sum, out[3]=neg, overflow=overflow);
-    Not4(in=sum, out=notsum);
-    And4(in=notsum, out=eq, out=tempeq);
-    Not(in=B[3], out=notB3);
-    And(a=A[3], b=notB3, out=negaANDposb);
-    And(a=negaANDposb, b=overflow, out=negaANDposbOverflow);
-    Or(a=neg, b=negaANDposbOverflow, out=lt);
-    Not(in=neg, out=pos);
-    Not(in=tempeq, out=noteq);
-    And(a=noteq, b=pos, out=noteqANDpos);
-    Not(in=A[3], out=notA3);
-    And(a=notA3, b=B[3], out=posaANDnegb);
-    And(a=posaANDnegb, b=overflow, out=posaANDnegbOverflow);
-    Or(a=noteqANDpos, b=posaANDnegbOverflow, out=gt);
+    AddSub(a=A, b=B, sel=true, out=sum, overflow=overflow);
+
+    // PREPARE
+    Not(in=overflow, out=notoverflow);
+    Not(in=sum[3], out=notsumsign);
+    Not(in=A[3], out=notasign);
+    Not(in=B[3], out=notbsign);
+
+    Or(a=sum[0], b=sum[1], out=or01);
+    Or(a=sum[2], b=sum[3], out=or23);
+    Or(a=or01, b=or23, out=eq);
+
+    // LT
+    And(a=notoverflow, b=sum[3], out=ltcheck1);
+    And(a=A[3], b=notbsign, out=ltcheck2);
+    Or(a=ltcheck1, b=ltcheck2, out=lt);
+    
+    // GT
+    And(a=notoverflow, b=notsignbit, out=gtcheck1);
+    And(a=notasign, b=B[3], out=gtcheck2);
+    Or(a=gtcheck1, b=gtcheck2, out=gt);
 }
