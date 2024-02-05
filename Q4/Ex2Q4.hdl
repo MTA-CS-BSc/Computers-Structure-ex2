@@ -4,9 +4,8 @@
  * 
  * The output should be:
  * eq = 1 if A=B
-
-
- *                Alternatively, A>B iff not(A=B or A<B)
+ * lt = 1 if A<B
+ * gt = 1 if A>B
  */
 
 CHIP Ex2Q4 {
