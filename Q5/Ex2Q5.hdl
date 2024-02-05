@@ -5,21 +5,20 @@
 
 CHIP Ex2Q5 {
     IN A[8];
-    OUT Zn[4], ones[8];
+    OUT Zn[4];
 
     PARTS:
-    Not(in=0, out=ones[0]);
-    Not(in=0, out=ones[1]);
-    Not(in=0, out=ones[2]);
-    Not(in=0, out=ones[3]);
-    Not(in=0, out=ones[4]);
-    Not(in=0, out=ones[5]);
-    Not(in=0, out=ones[6]);
-    Not(in=0, out=ones[7]);
-    
-    Xor(a=A, b=ones, out=A_xor_255);
-    FullAdder(a=A_xor_255[0], b=A_xor_255[1], c=A_xor_255[2], sum=Zn[0], carry=c0);
-    FullAdder(a=A_xor_255[3], b=A_xor_255[4], c=c0, sum=Zn[1], carry=c1);
-    FullAdder(a=A_xor_255[5], b=A_xor_255[6], c=c1, sum=Zn[2], carry=c2);
-    HalfAdder(a=A_xor_255, b=c2, sum=Z[3], carry=c3);
+    Xor(a=A[0], b=true, out=A0XOR1);
+    Xor(a=A[1], b=true, out=A1XOR1);
+    Xor(a=A[2], b=true, out=A2XOR1);
+    Xor(a=A[3], b=true, out=A3XOR1);
+    Xor(a=A[4], b=true, out=A4XOR1);
+    Xor(a=A[5], b=true, out=A5XOR1);
+    Xor(a=A[6], b=true, out=A6XOR1);
+    Xor(a=A[7], b=true, out=A7XOR1);
+
+    HalfAdder(a=A0XOR1, b=A1XOR1, sum=sum0, carry=carry0);
+    HalfAdder(a=A2XOR1, b=A3XOR1, sum=sum1, carry=carry1);
+    HalfAdder(a=A4XOR1, b=A5XOR1, sum=sum2, carry=carry2);
+    HalfAdder(a=A6XOR1, b=A7XOR1, sum=sum3, carry=carry3);
 }
