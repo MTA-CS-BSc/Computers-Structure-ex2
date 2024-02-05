@@ -8,16 +8,9 @@ CHIP Ex2Q5 {
     OUT Zn[4];
 
     PARTS:
-    Xor(a=A[0], b=true, out=A0XOR1);
-    Xor(a=A[1], b=true, out=A1XOR1);
-    Xor(a=A[2], b=true, out=A2XOR1);
-    Xor(a=A[3], b=true, out=A3XOR1);
-    Xor(a=A[4], b=true, out=A4XOR1);
-    Xor(a=A[5], b=true, out=A5XOR1);
-    Xor(a=A[6], b=true, out=A6XOR1);
-    Xor(a=A[7], b=true, out=A7XOR1);
-
-    HalfAdder(a=A0XOR1, b=A1XOR1, sum=sum0, carry=carry0);
+    Xor8(in=A,out=modA);
+    
+    HalfAdder(a=modA[0], b=modA[1], sum=sum0, carry=carry0);
     HalfAdder(a=A2XOR1, b=A3XOR1, sum=sum1, carry=carry1);
     HalfAdder(a=A4XOR1, b=A5XOR1, sum=sum2, carry=carry2);
     HalfAdder(a=A6XOR1, b=A7XOR1, sum=sum3, carry=carry3);

@@ -9,3 +9,31 @@ output;
 set A %B10000000,
 eval,
 output;
+
+set A %B00011000,
+eval,
+output;
+
+set A %B00101010,
+eval,
+output;
+
+set A %B01100101,
+eval,
+output;
+
+set A %B11101010,
+eval,
+output;
+
+set A %B01111110,
+eval,
+output;
+
+set A %B11101111,
+eval,
+output;
+
+set A %B11111111,
+eval,
+output;
