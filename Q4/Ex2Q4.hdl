@@ -9,10 +9,23 @@
  *                Alternatively, A>B iff not(A=B or A<B)
  */
 
-CHIP Ex2Q6 {
+CHIP Ex2Q4 {
     IN A[4], B[4];
     OUT eq, gt, lt;
 
     PARTS:
-    // Put your code here:
+    AddSub(a=A, b=B, sel=true, out=sum, out[3]=neg, overflow=overflow);
+    Not4(in=sum, out=notsum);
+    And4(in=notsum, out=eq, out=tempeq);
+    Not(in=B[3], out=notB3);
+    And(a=A[3], b=notB3, out=negaANDposb);
+    And(a=negaANDposb, b=overflow, out=negaANDposbOverflow);
+    Or(a=neg, b=negaANDposbOverflow, out=lt);
+    Not(in=neg, out=pos);
+    Not(in=tempeq, out=notEq);
+    And(a=notEq, b=pos, out=noteqANDpos);
+    Not(in=A[3], out=notA3);
+    And(a=notA3, b=B[3], out=posaANDnegb);
+    And(a=posaANDnegb, b=overflow, out=posaANDnegbOverflow);
+    Or(a=noteqANDpos, b=posaANDnegbOverflow, out=gt);
 }
