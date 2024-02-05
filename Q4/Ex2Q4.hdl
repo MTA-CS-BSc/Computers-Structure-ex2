@@ -4,8 +4,8 @@
  * 
  * The output should be:
  * eq = 1 if A=B
- * lt = 1 if A<B (there is no overflow and A-B<0) or (A<0 and B>=0)
- * gt = 1 if A>B (there is no overflow and A-B>0) or (A>=0 and B<0)
+
+
  *                Alternatively, A>B iff not(A=B or A<B)
  */
 
@@ -14,25 +14,27 @@ CHIP Ex2Q4 {
     OUT eq, gt, lt;
 
     PARTS:
-    AddSub(a=A, b=B, sel=true, out=sum, overflow=overflow);
-
+    AddSub(a=A, b=B, sel=true, out=sum, out[0]=sum0, out[1]=sum1, out[2]=sum2, out[3]=sum3, overflow=overflow);
+    
     // PREPARE
     Not(in=overflow, out=notoverflow);
-    Not(in=sum[3], out=notsumsign);
+    Not(in=sum3, out=notsumsign);
     Not(in=A[3], out=notasign);
     Not(in=B[3], out=notbsign);
 
-    Or(a=sum[0], b=sum[1], out=or01);
-    Or(a=sum[2], b=sum[3], out=or23);
-    Or(a=or01, b=or23, out=eq);
+    Or(a=sum0, b=sum1, out=or01);
+    Or(a=sum2, b=sum3, out=or23);
+    Or(a=or01, b=or23, out=orall);
+    Not(in=orall, out=eq, out=eqcpy);
 
     // LT
-    And(a=notoverflow, b=sum[3], out=ltcheck1);
+    And(a=notoverflow, b=sum3, out=ltcheck1);
     And(a=A[3], b=notbsign, out=ltcheck2);
     Or(a=ltcheck1, b=ltcheck2, out=lt);
     
     // GT
-    And(a=notoverflow, b=notsignbit, out=gtcheck1);
+    And(a=notoverflow, b=notsumsign, out=asubbeqgt0);
+    Xor(a=eqcpy, b=asubbeqgt0, out=gtcheck1);
     And(a=notasign, b=B[3], out=gtcheck2);
     Or(a=gtcheck1, b=gtcheck2, out=gt);
 }
