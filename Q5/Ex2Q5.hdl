@@ -8,14 +8,7 @@ CHIP Ex2Q5 {
     OUT Zn[4];
 
     PARTS:
-    Not(in=A[0], out=nota0);
-    Not(in=A[1], out=nota1);
-    Not(in=A[2], out=nota2);
-    Not(in=A[3], out=nota3);
-    Not(in=A[4], out=nota4);
-    Not(in=A[5], out=nota5);
-    Not(in=A[6], out=nota6);
-    Not(in=A[7], out=nota7);
+    Not8(in=A, out[0]=nota0, out[1]=nota1, out[2]=nota2, out[3]=nota3, out[4]=nota4, out[5]=nota5, out[6]=nota6, out[7]=nota7);
 
     // Main idea is to sum all different weights together by weight 
     HalfAdder(a=nota0, b=nota1, sum=s1w1, carry=c1w2);
