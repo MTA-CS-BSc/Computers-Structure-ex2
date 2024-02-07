@@ -17,6 +17,7 @@ CHIP Ex2Q5 {
     Not(in=A[6], out=nota6);
     Not(in=A[7], out=nota7);
 
+    // Main idea is to sum all different weights together by weight 
     HalfAdder(a=nota0, b=nota1, sum=s1w1, carry=c1w2);
     HalfAdder(a=nota2, b=nota3, sum=s2w1, carry=c2w2);
     HalfAdder(a=nota4, b=nota5, sum=s3w1, carry=c3w2);
