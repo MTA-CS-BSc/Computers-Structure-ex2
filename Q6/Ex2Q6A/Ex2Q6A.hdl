@@ -1,0 +1,24 @@
+/**
+ *  F(A,B,C,D) = SOP(1,2,3,4,5,8,9,14)
+ */
+
+CHIP Ex2Q6A {
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+    Not(in=a, out=nota);
+    Not(in=b, out=notb);
+    Not(in=c, out=notc);
+    Not(in=d, out=notd);
+
+    Dec3x8(in[0]=b, in[1]=c, in[2]=d, out=decout);
+    
+    Or5(in=decout[1..5], out=or1to5);
+    And(a=nota, b=or1to5, out=test1);
+
+    Or3(a=decout[0], b=decout[1], c=decout[6]);
+    And(a=a, b=or016, out=test2);
+
+    Or(a=test1, b=test2, out=out);
+}
