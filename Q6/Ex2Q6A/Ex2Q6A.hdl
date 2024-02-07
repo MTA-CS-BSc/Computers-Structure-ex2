@@ -12,11 +12,14 @@ CHIP Ex2Q6A {
     Not(in=c, out=notc);
     Not(in=d, out=notd);
 
+    // Use decoder to decode bcd
     Dec3x8(a=b, b=c, c=d, out[0]=dec0, out[1]=dec1, out[2]=dec2, out[3]=dec3, out[4]=dec4, out[5]=dec5, out[6]=dec6);
     
+    // 1-5
     Or5(a=dec1, b=dec2, c=dec3, d=dec4, e=dec5, out=or1to5);
     And(a=nota, b=or1to5, out=test1);
 
+    // bcd value for 8,9,14
     Or3(a=dec0, b=dec1, c=dec6, out=or016);
     And(a=a, b=or016, out=test2);
 

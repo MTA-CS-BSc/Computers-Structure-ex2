@@ -7,6 +7,26 @@ CHIP Ex2Q6B {
     OUT out;
 
     PARTS:
-    // Put your implementation here using DEC2x4
-    // and minimal logic
+    Not(in=a, out=nota);
+    Not(in=b, out=notb);
+    Not(in=c, out=notc);
+    Not(in=d, out=notd);
+
+    Dec2x4(a=a, b=b, out[0]=dec0, out[1]=dec1, out[2]=dec2, out[3]=dec3);
+
+    // 1. dec0 = nota, notb
+    Nand(a=notc, b=notd, out=cORd);
+    And(a=dec0, b=cORd, out=test1);
+
+    // 2. dec1 = nota, b
+    And(a=dec1, b=notc, out=test2);
+
+    // 3. dec2 = a, notb
+    And(a=dec2, b=notc, out=test3);
+
+    // 4. dec3 = a, b
+    And(a=c, b=notd, out=cANDnotd);
+    And(a=dec3, b=cANDnotd, out=test4);
+
+    Or4(a=test1, b=test2, c=test3, d=test4, out=out);
 }
