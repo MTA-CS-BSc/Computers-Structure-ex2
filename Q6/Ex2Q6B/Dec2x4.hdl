@@ -1,0 +1,13 @@
+CHIP Dec2x4 {
+    IN a, b, enabled;
+    OUT out[4];
+
+    PARTS:
+    Dec1x2(in=a, enabled=true, out[0]=outa0, out[1]=outa1);
+    Dec1x2(in=b, enabled=outa1, out[0]=outb10, out[1]=outb11);
+    Dec1x2(in=b, enabled=outa0, out[0]=outb20, out[1]=outb21);
+    And(a=outb20, b=outb20, out=out[0]);
+    And(a=outb21, b=outb21, out=out[1]);
+    And(a=outb10, b=outb10, out=out[2]);
+    And(a=outb11, b=outb11, out=out[3]);
+}
