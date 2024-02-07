@@ -3,22 +3,29 @@
  */
 
 CHIP Dec3x8 {
-    IN in[3];
+    IN a, b, c;
     OUT out[8];
 
     PARTS:
-    // Internal wires
-    Not(in=in[0], out=notin0);
-    Not(in=in[1], out=notin1);
-    Not(in=in[2], out=notin2);
+    Not(in=c, out=notc);
+    Not(in=b, out=notb);
+    Not(in=a, out=nota);
 
-    // Compute the outputs
-    And(a=notin0, b=notin1, out=out[0]);
-    And(a=in[0], b=notin1, out=out[1]);
-    And(a=notin0, b=in[1], out=out[2]);
-    And(a=in[0], b=in[1], out=out[3]);
-    And(a=notin0, b=notin2, out=out[4]);
-    And(a=in[0], b=notin2, out=out[5]);
-    And(a=notin0, b=in[2], out=out[6]);
-    And(a=in[0], b=in[2], out=out[7]);
+    And(a=nota, b=notb, out=notaANDnotb);
+    And(a=notaANDnotb, b=notc, out=out[0]);
+    And(a=notaANDnotb, b=c, out=out[1]);
+
+    And(a=nota, b=b, out=bANDnota);
+    And(a=bANDnota, b=notc, out=out[2]);
+
+    And(a=bANDnota, b=c, out=out[3]);
+
+    And(a=a, b=notb, out=aANDnotb);
+    And(a=aANDnotb, b=notc, out=out[4]);
+
+    And(a=aANDnotb, b=c, out=out[5]);
+
+    And(a=a, b=b, out=aANDb);
+    And(a=aANDb, b=notc, out=out[6]);
+    And(a=aANDb, b=c, out=out[7]);
 }

@@ -12,12 +12,12 @@ CHIP Ex2Q6A {
     Not(in=c, out=notc);
     Not(in=d, out=notd);
 
-    Dec3x8(in[0]=b, in[1]=c, in[2]=d, out=decout);
+    Dec3x8(a=b, b=c, c=d, out[0]=dec0, out[1]=dec1, out[2]=dec2, out[3]=dec3, out[4]=dec4, out[5]=dec5, out[6]=dec6);
     
-    Or5(in=decout[1..5], out=or1to5);
+    Or5(a=dec1, b=dec2, c=dec3, d=dec4, e=dec5, out=or1to5);
     And(a=nota, b=or1to5, out=test1);
 
-    Or3(a=decout[0], b=decout[1], c=decout[6]);
+    Or3(a=dec0, b=dec1, c=dec6, out=or016);
     And(a=a, b=or016, out=test2);
 
     Or(a=test1, b=test2, out=out);
