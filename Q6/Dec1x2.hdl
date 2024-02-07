@@ -1,0 +1,9 @@
+CHIP Dec1x2 {
+    IN in, enabled;
+    OUT out[2];
+
+    PARTS:
+    Not(in=in, out=notin);
+    And(a=notin, b=enabled, out=out[0]);
+    And(a=in, b=enabled, out=out[1]);
+}
